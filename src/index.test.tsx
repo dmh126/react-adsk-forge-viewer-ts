@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { ForgeViewer } from '.';
 
-describe('ExampleComponent', () => {
+describe('ForgeViewer', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+    expect(ForgeViewer).toBeTruthy();
+  });
+});
