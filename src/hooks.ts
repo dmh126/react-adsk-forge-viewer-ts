@@ -6,7 +6,8 @@ import {
   DEFAULT_INITIALIZER_OPTIONS,
   DEFAULT_VIEWER_OPTIONS,
   DEFAULT_VIEWABLE_OPTIONS,
-  DEFAULT_VERSION
+  DEFAULT_VERSION,
+  DEFAULT_ON_INIT
 } from './defaults';
 
 type State = {
@@ -40,7 +41,7 @@ export function useHooks({
   onDocumentLoadSuccess = DEFAULT_DOCUMENT_LOAD_SUCCESS,
   onDocumentLoadError = DEFAULT_DOCUMENT_LOAD_ERROR,
   viewableOptions = DEFAULT_VIEWABLE_OPTIONS,
-  onInit,
+  onInit = DEFAULT_ON_INIT,
   extensions,
   style = {}
 }: any): Hooks {
@@ -89,13 +90,11 @@ export function useHooks({
           viewerOpts
         );
       }
+      viewer.addEventListener(Autodesk.Viewing.VIEWER_INITIALIZED, onInit);
       const startedCode = viewer.start(path);
       if (startedCode > 0) {
         console.error('Failed to create a Viewer: WebGL not supported.');
         return;
-      }
-      if (onInit) {
-        onInit(viewer);
       }
       if (extensions) {
         extensions.forEach((extension: any) => {

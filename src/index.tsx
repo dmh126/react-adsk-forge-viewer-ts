@@ -26,7 +26,7 @@ interface DefaultProps {
   viewerOptions?: Autodesk.Viewing.Viewer3DConfig;
   headless?: boolean;
   viewableOptions?: Autodesk.Viewing.LoadModelOptions;
-  onInit?: (v: Autodesk.Viewing.Viewer3D) => void;
+  onInit?: (v?: any) => void;
   extensions?: any[];
   style?: any;
 }

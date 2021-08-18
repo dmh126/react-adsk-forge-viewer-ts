@@ -1,10 +1,9 @@
 {
   "name": "@contecht/react-adsk-forge-viewer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React Typescript Autodesk Forge Viewer",
   "author": "Damian Harasymczuk",
   "license": "MIT",
-  "repository": "https://gitlab.contecht.eu/Damian/react-adsk-forge-viewer",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

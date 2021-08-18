@@ -15,3 +15,4 @@ export const DEFAULT_DOCUMENT_LOAD_ERROR = (
 ): void => {
   console.error(errorCode, errorMsg, messages);
 };
+export const DEFAULT_ON_INIT = (): void => {};

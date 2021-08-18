@@ -62,7 +62,7 @@ const  Container = () => {
 - onDocumentLoadSuccess (optional) {(d: Autodesk.Viewing.Document) => Autodesk.Viewing.BubbleNode} - callback triggered on successful document load, pass a new one to select different viewables, must return a viewable to display, default: `(viewerDocument) => viewerDocument.getRoot().getDefaultGeometry();`
 - onDocumentLoadError (optional) {(code?: number, msg?: string, msgs?: any[]) => void} - error handling callback, default: `(args) => console.error(args)`
 - viewableOptions - (optional) {object} - viewable options see: [docs](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Viewer3D/#loaddocumentnode-avdocument-manifestnode-options), default: `{}`
-- onInit (optional) {(v: Autodesk.Vieweing.Viewer3D) => void} - function to trigger after successful viewer initialization, default: `undefined`
+- onInit (optional) {(o: any) => void} - function to trigger after successful viewer initialization, default: `undefined`
 - extensions (optional) {ForgeExtension[]} - array of extensions to load on viewer start, more about extensions in the section below, default: `undefined`
 
 ## Local files

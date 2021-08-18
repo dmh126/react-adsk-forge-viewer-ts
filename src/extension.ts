@@ -15,4 +15,6 @@ export abstract class Extension {
 
   public abstract load(): void;
   public abstract unload(): void;
+  public abstract activate(): void;
+  public abstract deactivate(): void;
 }
