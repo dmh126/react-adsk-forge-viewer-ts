@@ -29,6 +29,7 @@ interface DefaultProps {
   onInit?: (v?: any) => void;
   extensions?: any[];
   style?: any;
+  disableLoader?: boolean;
 }
 
 type Props = (ApiProps | LocalProps) & DefaultProps;

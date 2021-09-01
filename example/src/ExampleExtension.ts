@@ -17,4 +17,7 @@ export default class ExampleExtension extends ForgeExtension {
     return true;
   }
 
+  activate() {}
+  deactivate() {}
+
 }

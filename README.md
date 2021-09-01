@@ -64,6 +64,8 @@ const  Container = () => {
 - viewableOptions - (optional) {object} - viewable options see: [docs](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Viewer3D/#loaddocumentnode-avdocument-manifestnode-options), default: `{}`
 - onInit (optional) {(o: any) => void} - function to trigger after successful viewer initialization, default: `undefined`
 - extensions (optional) {ForgeExtension[]} - array of extensions to load on viewer start, more about extensions in the section below, default: `undefined`
+- style (optional) {object} - React inline style to be applied to viewer container div
+- disableLoader (optional) {boolean} - remove Forge spinner while initializing the viewer, default: `false`
 
 ## Local files
 
@@ -99,7 +101,7 @@ declare  var  Autodesk: any;
 
 export  default  class  ExampleExtension  extends ForgeExtension {
 
-	name = 'ExampleExtension';
+	extensionName = 'ExampleExtension';
 
 	load(): boolean {
 
@@ -110,18 +112,16 @@ export  default  class  ExampleExtension  extends ForgeExtension {
 		this.viewer.setSelectionColor(red, Autodesk.Viewing.SelectionType.MIXED);
 
 		return  true;
-
 	}
-
-  
 
 	unload(): boolean {
 
 		return  true;
-
 	}
 
-  
+  activate() {}
+
+  deactivate() {}
 
 }
 ```

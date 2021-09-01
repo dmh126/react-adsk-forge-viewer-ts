@@ -43,7 +43,8 @@ export function useHooks({
   viewableOptions = DEFAULT_VIEWABLE_OPTIONS,
   onInit = DEFAULT_ON_INIT,
   extensions,
-  style = {}
+  style = {},
+  disableLoader = false
 }: any): Hooks {
   // declare state
   const [scriptsLoaded, setScriptsLoaded] = React.useState<boolean>(false);
@@ -90,7 +91,15 @@ export function useHooks({
           viewerOpts
         );
       }
-      viewer.addEventListener(Autodesk.Viewing.VIEWER_INITIALIZED, onInit);
+      viewer.addEventListener(Autodesk.Viewing.VIEWER_INITIALIZED, (e) => {
+        if (disableLoader) {
+          const spinnerContainer = (viewer as any)._loadingSpinner.domElement;
+          while (spinnerContainer.hasChildNodes()) {
+            spinnerContainer.removeChild(spinnerContainer.lastChild);
+          }
+        }
+        onInit(e);
+      });
       const startedCode = viewer.start(path);
       if (startedCode > 0) {
         console.error('Failed to create a Viewer: WebGL not supported.');
