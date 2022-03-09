@@ -111,7 +111,7 @@ export function useHooks({
             extension.extensionName,
             extension
           );
-          viewer.loadExtension(extension.extensionName, extension.extOptions);
+          viewer.loadExtension(extension.extensionName, viewerOptions);
         });
       }
     });
