@@ -1,6 +1,6 @@
 {
   "name": "@contecht/react-adsk-forge-viewer",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "React Typescript Autodesk Forge Viewer",
   "author": "Damian Harasymczuk",
   "license": "MIT",
