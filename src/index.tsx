@@ -30,6 +30,7 @@ interface DefaultProps {
   extensions?: any[];
   style?: any;
   disableLoader?: boolean;
+  activeTool?: any;
 }
 
 type Props = (ApiProps | LocalProps) & DefaultProps;
@@ -40,3 +41,4 @@ export const ForgeViewer = (props: Props): React.ReactElement => {
 };
 
 export { Extension as ForgeExtension } from './extension';
+export { ToolInterface } from './tool-interface';

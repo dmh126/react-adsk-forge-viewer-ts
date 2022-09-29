@@ -44,7 +44,8 @@ export function useHooks({
   onInit = DEFAULT_ON_INIT,
   extensions,
   style = {},
-  disableLoader = false
+  disableLoader = false,
+  activeTool
 }: any): Hooks {
   // declare state
   const [scriptsLoaded, setScriptsLoaded] = React.useState<boolean>(false);
@@ -113,6 +114,14 @@ export function useHooks({
           );
           viewer.loadExtension(extension.extensionName, viewerOptions);
         });
+      }
+      if (activeTool) {
+        const ToolConstructor = activeTool;
+        // eslint-disable-next-line dot-notation
+        const toolController = viewer['toolController'];
+        const tool = new ToolConstructor(viewer, viewerOptions);
+        toolController.registerTool(tool);
+        toolController.activateTool(tool.toolName);
       }
     });
   };
