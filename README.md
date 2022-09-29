@@ -64,6 +64,7 @@ const  Container = () => {
 - viewableOptions - (optional) {object} - viewable options see: [docs](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Viewer3D/#loaddocumentnode-avdocument-manifestnode-options), default: `{}`
 - onInit (optional) {(o: any) => void} - function to trigger after successful viewer initialization, default: `undefined`
 - extensions (optional) {ForgeExtension[]} - array of extensions to load on viewer start, more about extensions in the section below, default: `undefined`
+- activeTool (optional) {ToolInterface} - Tool interface implementing viewer interactions. Constructor recives additionally viewerOptions as extOptions, default: `undefined`
 - style (optional) {object} - React inline style to be applied to viewer container div
 - disableLoader (optional) {boolean} - remove Forge spinner while initializing the viewer, default: `false`
 
@@ -126,13 +127,54 @@ export  default  class  ExampleExtension  extends ForgeExtension {
 }
 ```
 
+## Tool Interface
+
+ToolInterface is a base class for viewer interactions. It supports the following event handlers:
+- handleSingleClick
+- handleDoubleClick
+- handleSingleTap
+- handleDoubleTap
+- handleKeyDown
+- handleKeyUp
+- handleWheelInput
+- handleButtonDown
+- handleButtonUp
+- handleMouseMove
+- handleGesture
+- handleBlur
+- handleResize
+
+Can be registered and activated using property `activeTool`. In case of more complex workflow it's recommended to handle (de)registering and (de)activating inside an extension to have full controll over the tool lifecycle. 
+
+Example:
+```
+import { ToolInterface } from 'react-adsk-forge-viewer-ts';
+
+export default class ExampleTool extends ToolInterface {
+  public toolName = 'ExampleTool';
+
+  activate() {}
+  deactivate() {}
+  register() {}
+  deregister() {}
+  handleSingleClick(event: any) {
+    // method executed on every mouse button click
+    // do something with the event here
+    const hitTest = this.viewer.clientToWorld(event.canvasX, event.canvasY, true);
+    console.info(hitTest);
+    return true;
+  }
+}
+```
+
 ## Advanced Usage
 
 ```tsx
 
 import  React  from  'react';
 import { ForgeViewer } from  '@contecht/react-adsk-forge-viewer';
-import ExampleExtension from './extensions/exmple-extension';
+import ExampleExtension from './extensions/example-extension';
+import ExampleTool from './tools/example-tool';
 const  token = "dXtgfg433432e4445..."; // Forge token 2 or 3 legged
 const  urn = "dJggddssvc_ggddd..."; // base64 encoded model urn
 
@@ -163,6 +205,7 @@ const  ViewerContainer = () => {
 			onDocumentLoadSuccess={onDocumentLoadSuccess} // selects a 2D viewable instead of the default one
 			viewableOptions={viewableOptions} // sets an offset Z axis to 25
 			extensions=[ExampleExtension] // loads an example extension imported from file
+			activeTool={ExampleTool} // registers and activates a ToolInterface imported from file
 		/>
 	)
 
