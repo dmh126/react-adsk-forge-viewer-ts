@@ -1,6 +1,6 @@
 {
   "name": "@contecht/react-adsk-forge-viewer",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "React Typescript Autodesk Forge Viewer",
   "author": "Damian Harasymczuk",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
