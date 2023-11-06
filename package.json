@@ -58,13 +58,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^5.0.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "@types/forge-viewer": "^7.32.2"
   },
   "files": [
     "dist",
     "README.md"
-  ],
-  "dependencies": {
-    "@types/forge-viewer": "^7.32.2"
-  }
+  ]
 }
